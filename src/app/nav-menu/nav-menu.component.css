@@ -1,0 +1,8 @@
+.navbar {
+    background-color: #000;
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+    transition: all 1s;
+}

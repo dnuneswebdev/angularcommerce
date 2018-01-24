@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #000;
+    border-bottom: 1px solid #e23e3e;
+    
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+    transition: all 1s;
+}
