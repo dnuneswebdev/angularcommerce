@@ -27,11 +27,14 @@ import { FooterComponent } from './footer/footer.component';
 import { HeroComponent } from './hero/hero.component';
 import { OrderComponent } from './order/order.component';
 import { LoginComponent } from './login/login.component';
+import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { ProductFormComponent } from './admin/product-form/product-form.component'
 
 //SERVICES
-import { FirebaseService } from './services/firebase.service';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
+import { CategoryService } from './services/category.service';
+import { ProductService } from './services/product.service';
 
 
 
@@ -55,7 +58,9 @@ import { UserService } from './services/user.service';
     FooterComponent,
     HeroComponent,
     OrderComponent,
-    LoginComponent
+    LoginComponent,
+    AdminProductsComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
@@ -67,9 +72,10 @@ import { UserService } from './services/user.service';
     RouterModule.forRoot(ROUTES)
      
   ],
-  providers: [FirebaseService, 
-              AuthService, 
-              UserService],
+  providers: [AuthService, 
+              UserService,
+              CategoryService,
+              ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

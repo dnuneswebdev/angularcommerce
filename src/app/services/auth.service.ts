@@ -4,17 +4,19 @@ import * as firebase from 'firebase/app';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AppUser } from '../models/user.model';
-
+import { CanActivate } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 
 @Injectable()
-export class AuthService {
+export class AuthService implements CanActivate{
 
   user$: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute,
+              private router: Router) { 
 
       this.user$ = afAuth.authState            
 
@@ -26,10 +28,8 @@ export class AuthService {
   }
   
 
-  loginUser(email, password): Observable<any> {
-    return Observable.fromPromise(
-      this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    )
+  loginUser(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
     
   }
 
@@ -42,6 +42,16 @@ export class AuthService {
 
   logout() {
     this.afAuth.auth.signOut()
+  }
+
+
+  canActivate() {
+    return this.user$.map(user => {
+      if(user) return true
+
+      this.router.navigate(['/login'])
+      return false
+    })
   }
 
 }

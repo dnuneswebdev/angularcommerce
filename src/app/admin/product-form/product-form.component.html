@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+        <div class="form-group">
+          <label for="title">Product Title</label>
+          <input #title="ngModel" [(ngModel)]="product.title" 
+          name="title" type="text" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+            <label for="size">Size</label>
+            <input #size="ngModel" [(ngModel)]="product.size" 
+            name="size" type="text" class="form-control" id="size">
+          </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input #price="ngModel" [(ngModel)]="product.price" 
+          name="price" type="text" class="form-control" id="price">
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select #category="ngModel" [(ngModel)]="product.category" 
+          name="category" class="form-control" id="category">
+            <option></option>
+            <option *ngFor="let c of categories$ | async" [value]="c.$key">{{c.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="imageUrl">Image</label>
+          <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" 
+          name="imageUrl" type="text" id="imageUrl" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea #description="ngModel" [(ngModel)]="product.description" 
+          name="description" 
+          class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <button class="btn btn-success">
+          <i class="fa fa-check"></i> Save</button>
+        <button type="button" (click)="delete()" class="btn btn-danger">
+          <i class="fa fa-trash"></i> Delete</button>
+      </form>
+    </div>
+
+    <div class="col-md-3"> 
+        <img [src]="product.imageUrl" class="img-fluid" *ngIf="product.imageUrl">
+    </div>
+
+    <div class="col-md-4">
+      <h4>{{product.title}}</h4>
+      <p>{{product.size}}</p>
+      <p>{{product.price | currency: 'USD': symbol}}</p>
+      <p>{{product.category}}</p>
+      <p>{{product.description}}</p>
+
+    </div>
+      
+
+  </div>
+</div>

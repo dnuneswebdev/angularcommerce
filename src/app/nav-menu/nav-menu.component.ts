@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 
 
 
@@ -12,14 +12,19 @@ import { Router } from '@angular/router';
 
 export class NavMenuComponent implements OnInit {
 
+  
+  categories$;
+  
+  @Input('category') category
 
+  constructor(private categoryService: CategoryService) { 
 
-  constructor(private router: Router) { 
-
+      this.categories$ = categoryService.getCategories()
+      
   }
 
   ngOnInit() {
-
+    
   }
 
 }

@@ -1,3 +1,14 @@
-<p>
-  products works!
-</p>
+<nav-menu [category]="category"></nav-menu>
+<div class="container">
+
+ <h2 class="text-center">Ímpeto Featured Products</h2>
+
+<div class="row">
+  <ng-container *ngFor="let products of filteredProducts">
+      <div class="col-sm-3">
+          <product-card [product]="products"></product-card>
+        </div>
+  </ng-container>
+
+</div>
+</div>

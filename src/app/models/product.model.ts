@@ -4,12 +4,13 @@
 export class Product {
 
     id: number
-    image: string
-    name: string
-    description: string
-    size: number
-    category: string
-    featured: true
+    title: string
+    size: string
     price: number
+    category: string
+    type: string
+    description: string
+    image: string
+    featured: false
 
 }

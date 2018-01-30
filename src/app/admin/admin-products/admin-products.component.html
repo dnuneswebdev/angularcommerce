@@ -1,0 +1,32 @@
+<div class="container">
+<button class="btn btn-primary" 
+[routerLink]="['/admin/products/new']">New Product</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products$ | async">
+            <td>{{p.title}}</td>
+            <td>{{p.size}}</td>
+            <td>{{p.price | currency: 'USD': symbol}}</td>
+            <td>{{p.category}}</td>
+            <td>{{p.type}}</td>
+            <td>
+                <a [routerLink]="['/admin/products/', p.$key]" class="btn btn-sm btn-warning">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</div>

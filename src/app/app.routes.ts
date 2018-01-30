@@ -6,6 +6,9 @@ import { AccessoriesComponent } from "./accessories/accessories.component";
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
 import { OrderComponent } from "./order/order.component";
 import { LoginComponent } from "./login/login.component";
+import { AdminProductsComponent } from "./admin/admin-products/admin-products.component";
+import { ProductFormComponent } from "./admin/product-form/product-form.component";
+import { AuthService } from "./services/auth.service";
 
 
 
@@ -18,10 +21,14 @@ export const ROUTES: Routes = [
 
 
     {path: 'accessories', component: AccessoriesComponent},
-    {path: 'product-detail', component: ProductDetailComponent},
+    {path: 'products/:id', component: ProductDetailComponent},
     {path: 'order', component: OrderComponent},
 
 
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthService]},
+    {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthService]},
+    {path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthService]},
+
 
 ]

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 
 
@@ -17,9 +18,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private route: Router,
-              private formBuilder: FormBuilder) { 
+              private formBuilder: FormBuilder,
+              private userService: UserService) { 
 
       this.form = this.formBuilder.group({
+        name: ['', Validators.required],
         email: ['', Validators.required],
         password: ['', Validators.required]
       })
@@ -33,16 +36,15 @@ export class LoginComponent implements OnInit {
   createUser() {
     const inputValue = this.form.value
     this.authService.createUser(inputValue.email, inputValue.password)
+    this.route.navigate(['/'])
+
   }
 
   loginUser() {
     const inputValue = this.form.value
-    console.log(inputValue)
     this.authService.loginUser(inputValue.email, inputValue.password)
-    .subscribe(
-      success => this.route.navigate(['/']),
-      error => alert(error)
-    )
+    this.route.navigate(['/'])
+ 
   }
 
   loginGoogle() {

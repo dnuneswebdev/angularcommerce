@@ -23,7 +23,7 @@
            Bem vindo {{user.displayName}} {{user.email}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Manage Products</a>
+              <a class="dropdown-item" [routerLink]="['/admin/products']">Manage Products</a>
               <a class="dropdown-item" (click)="logout()">Logout</a>
             </div>
         </li>
